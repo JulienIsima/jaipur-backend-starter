@@ -1,4 +1,5 @@
 import express from "express"
+import * as db from "../database"
 import * as gameService from "../services/gameService"
 
 const router = express.Router()
@@ -10,6 +11,17 @@ router.post("/", function (req, res) {
 
   const newGame = gameService.createGame(req.body.name)
   res.status(201).json({ id: newGame.id, name: newGame.name })
+
+  console.log("Game créée :", newGame.name)
 })
+
+
+router.get("/", function (req, res) {
+  const games = db.getGames() 
+  games.map((game) => ({ id: game.id, name: game.name}))
+  
+  res.status(200).json(games)
+})
+
 
 export default router

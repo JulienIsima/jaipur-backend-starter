@@ -90,5 +90,5 @@ export function createGame(name) {
   putCamelsFromHandToHerd(game)
   db.saveGame(game)
 
-  return {}
+  return game
 }

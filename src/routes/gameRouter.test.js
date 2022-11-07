@@ -18,6 +18,7 @@ afterEach(() => {
 })
 
 describe("Game router", () => {
+
   test("should create a game", async () => {
     const response = await request(app).post("/games").send({ name: "test" })
     expect(response.body).toEqual({"id" : 1, "name": "test"})
@@ -32,6 +33,14 @@ describe("Game router", () => {
     const response = await request(app).post("/games").send({ name: "" })
     expect(response.statusCode).toBe(400)
   })
+
+  test("should get games from db", () => {
+    db.saveGame({ id: "toto", name: "toto1" })
+    db.saveGame({ id: "tata", name: "tata1" })
+    const games = gameService.getGames()
+    expect(games.length).toBe(2)
+  })
+
 })
 
 
