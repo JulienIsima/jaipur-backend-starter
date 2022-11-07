@@ -37,8 +37,9 @@ describe("Game router", () => {
   test("should get games from db", () => {
     db.saveGame({ id: "toto", name: "toto1" })
     db.saveGame({ id: "tata", name: "tata1" })
-    const games = gameService.getGames()
+    const games = db.getGames()
     expect(games.length).toBe(2)
+    expect(games[0]).toStrictEqual({id "toto", name: "toto1"})
   })
 
 })

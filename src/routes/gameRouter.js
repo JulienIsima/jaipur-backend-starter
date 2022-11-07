@@ -23,5 +23,11 @@ router.get("/", function (req, res) {
   res.status(200).json(games)
 })
 
+router.delete("/:gameId", function (req, res) {
+  console.log("iferfgez", req)
+  //res.status(200).json("suppresion")
+})
+
+
 
 export default router
